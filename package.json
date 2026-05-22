@@ -1,0 +1,10 @@
+{
+  "name": "exhibition-poster-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dev scripts for the 418 exhibition site (image optimization).",
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}
