@@ -268,11 +268,11 @@ export const works = [
     aiContribution: 'AI 툴 이번 그래픽 작업은 Claude(Anthropic), ChatGPT(OpenAI), Flow(이미지 생성)를 활용하였으며, 학생은 초기 콘셉트 기획과 지문을 모티프로 한 배경 조형 언어 설계, 와이어프레임 오브제 선택, 컬러 팔레트 및 타이포그래피 디렉팅, 포스터 레이아웃 전반을 이끌어냈습니다.',
     type: 'carousel',
     images: [
-      { type: 'png', src: '/images/works/heunyeol-thumb.webp', label: 'Poster' },
-      { type: 'gif', src: '/images/works/heunyeol-anim.gif', label: 'Animation' },
+      { type: 'png', src: '/images/works/heunyeol-full.webp', label: 'Poster' },
+      { type: 'gif', src: '/images/works/heunyeol-anim.webp', label: 'Animation' },
     ],
     thumbnail: '/images/works/heunyeol-thumb.webp',
-    full: '/images/works/heunyeol-thumb.webp',
+    full: '/images/works/heunyeol-full.webp',
     award: null,
   },
 ]
