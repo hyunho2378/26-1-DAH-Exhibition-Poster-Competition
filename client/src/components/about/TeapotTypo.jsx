@@ -85,19 +85,33 @@ export default function TeapotTypo() {
 
     // 크기: viewport 너비의 20% (이전 60%의 1/3)
     function getBase() {
-      return (window.innerWidth * 0.20) / SVG_W
+      const w = window.innerWidth
+      // 390px(모바일) → 0.65, 768px(태블릿) → 0.38, 1440px+(데스크탑) → 0.20
+      // 구간별 선형 보간
+      let ratio
+      if (w < 768) {
+        ratio = 0.65
+      } else if (w < 1440) {
+        const t = (w - 768) / (1440 - 768)
+        ratio = 0.38 - (0.38 - 0.20) * t
+      } else {
+        ratio = 0.20
+      }
+      return (w * ratio) / SVG_W
     }
 
     // progress → 목표값 계산
     function getTarget(progress) {
       const base = getBase()
       let tx, sc, op, rot
-      if (progress < 0.20) {
+      const isMobile = window.innerWidth < 768
+      const enterEnd = isMobile ? 0.10 : 0.25
+      if (progress < enterEnd) {
         // 진입: 빠르게 우측에서 들어옴
-        const p = progress / 0.20
-        tx = window.innerWidth * 0.5 * (1 - p)
-        sc = (0.6 + 0.4 * p) * base
-        op = p
+        const p = progress / enterEnd
+        tx = window.innerWidth * (isMobile ? 0.2 : 0.4) * (1 - p)
+        sc = ((isMobile ? 0.9 : 0.7) + (isMobile ? 0.1 : 0.3) * p) * base
+        op = isMobile ? Math.min(p * 4, 1) : p
         rot = 0
       } else if (progress < 0.80) {
         // 머묾+기울기 (전체의 60% — 스크롤 많이 해야 벗어남)
@@ -187,7 +201,7 @@ export default function TeapotTypo() {
   return (
     // 180vh — 섹션 진입하면 금방 티팟 보임 (scrollable = 80vh)
     // 머무는 구간(0.2~0.8) = 80vh * 0.6 = 48vh ≈ 스크롤 4~5번
-    <div ref={sectionRef} style={{ height: '180vh', position: 'relative' }}>
+    <div ref={sectionRef} style={{ height: typeof window !== 'undefined' && window.innerWidth < 768 ? '115vh' : '180vh', position: 'relative' }}>
       <div
         style={{
           position: 'sticky',

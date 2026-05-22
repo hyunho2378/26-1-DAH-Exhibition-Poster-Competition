@@ -30,7 +30,7 @@ export default function ViewWorksCTA() {
   }, [])
 
   return (
-    <section className="flex flex-col justify-center min-h-[40vh] md:min-h-[60vh] py-8 md:py-16">
+    <section className="flex flex-col justify-center min-h-[20vh] md:min-h-[60vh] py-3 md:py-16">
       <Link
         to="/content"
         data-cursor="poster"

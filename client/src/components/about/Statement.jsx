@@ -2,7 +2,7 @@ import FadeIn from '../ui/FadeIn'
 
 export default function Statement() {
   return (
-    <section className="relative py-8 md:py-20 overflow-hidden">
+    <section className="relative py-3 md:py-20 overflow-hidden">
 
       {/* 1. Human Touch — 상단 대형, 우측 정렬 */}
       <FadeIn>

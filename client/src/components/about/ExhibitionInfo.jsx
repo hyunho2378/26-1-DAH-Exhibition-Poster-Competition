@@ -102,12 +102,6 @@ export default function ExhibitionInfo() {
               >
                 Hallym University
               </p>
-              <p
-                className="font-pretendard"
-                style={{ fontSize: 'clamp(15px, 1.25vw, 17px)', lineHeight: 1.7, letterSpacing: '-0.01em', color: '#f0f0f0' }}
-              >
-                Ilsong Library 4F C.Square
-              </p>
             </div>
           </div>
 

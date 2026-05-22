@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import PosterImage from './PosterImage'
 import AwardBadge from '../ui/AwardBadge'
 import BackLink from '../ui/BackLink'
 
-// aiContribution 본문이 "AI 활용 및 학생의 기여" 또는 "N. AI..." 머리말로 시작하면
-// 소제목과 중복되므로 그 첫 줄만 제거 (원문 손상 아님, 표시상 중복 제거).
 function stripAiHeading(text) {
   if (!text) return text
   const lines = text.split('\n')
@@ -43,37 +42,121 @@ function DetailSection({ label, children }) {
   )
 }
 
+function CarouselDot({ active, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        width: 8,
+        height: 8,
+        borderRadius: '50%',
+        background: active ? '#C8E63C' : 'transparent',
+        border: `1px solid ${active ? '#C8E63C' : '#555'}`,
+        padding: 0,
+        cursor: 'pointer',
+        flexShrink: 0,
+      }}
+      aria-label="슬라이드 이동"
+    />
+  )
+}
+
+function NavButton({ onClick, disabled, children, overlay, side }) {
+  const [hovered, setHovered] = useState(false)
+  const color = disabled ? '#666' : hovered ? '#C8E63C' : '#f0f0f0'
+  const overlayStyle = overlay ? {
+    position: 'absolute',
+    top: '50%',
+    [side]: '12px',
+    transform: 'translateY(-50%)',
+    background: 'rgba(0,0,0,0.5)',
+    borderRadius: '4px',
+    zIndex: 1,
+  } : {}
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        color,
+        border: 'none',
+        padding: '8px',
+        cursor: disabled ? 'default' : 'pointer',
+        flexShrink: 0,
+        transition: 'color 0.2s ease',
+        display: 'flex',
+        alignItems: 'center',
+        ...overlayStyle,
+      }}
+    >
+      {children}
+    </button>
+  )
+}
+
 export default function PosterDetail({ work }) {
   const isCarousel = work.type === 'carousel'
-  const [activeIndex, setActiveIndex] = useState(isCarousel ? 1 : 0)
-  const intervalRef = useRef(null)
-
-  useEffect(() => {
-    if (!isCarousel) return
-    intervalRef.current = setInterval(() => {
-      setActiveIndex(i => (i + 1) % work.images.length)
-    }, 5000)
-    return () => clearInterval(intervalRef.current)
-  }, [isCarousel, work.images?.length])
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const displaySrc = isCarousel ? work.images[activeIndex].src : work.full
   const displayType = isCarousel ? work.images[activeIndex].type : work.type
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* 2컬럼 메인 레이아웃 */}
       <div className="flex flex-col md:flex-row flex-1">
 
         {/* 좌측: 포스터 이미지 (60%) */}
         <div className="md:w-[60%] flex flex-col items-center justify-start px-4 pt-6 pb-0 md:px-6 md:pt-12 md:pb-12 lg:px-10">
-          <div className="relative bg-surface-01" style={{ lineHeight: 0 }}>
-            <PosterImage
-              src={displaySrc}
-              type={displayType}
-              alt={`${work.author} - ${work.title}`}
-              className="w-auto max-h-[90vh] object-contain"
-            />
-          </div>
+          {isCarousel ? (
+            <div className="flex flex-col items-center gap-4 w-full">
+              <div className="relative bg-surface-01 w-full" style={{ lineHeight: 0 }}>
+                <PosterImage
+                  src={displaySrc}
+                  type={displayType}
+                  alt={`${work.author} - ${work.title}`}
+                  className="w-auto max-h-[90vh] object-contain"
+                />
+                <NavButton
+                  onClick={() => setActiveIndex(i => i - 1)}
+                  disabled={activeIndex === 0}
+                  overlay
+                  side="left"
+                >
+                  <ChevronLeft size={28} />
+                </NavButton>
+                <NavButton
+                  onClick={() => setActiveIndex(i => i + 1)}
+                  disabled={activeIndex === work.images.length - 1}
+                  overlay
+                  side="right"
+                >
+                  <ChevronRight size={28} />
+                </NavButton>
+              </div>
+
+              {/* 점 인디케이터 */}
+              <div className="flex items-center gap-2">
+                {work.images.map((_, i) => (
+                  <CarouselDot
+                    key={i}
+                    active={i === activeIndex}
+                    onClick={() => setActiveIndex(i)}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="relative bg-surface-01" style={{ lineHeight: 0 }}>
+              <PosterImage
+                src={displaySrc}
+                type={displayType}
+                alt={`${work.author} - ${work.title}`}
+                className="w-auto max-h-[90vh] object-contain"
+              />
+            </div>
+          )}
         </div>
 
         {/* 우측: 정보 패널 (40%) */}
@@ -81,7 +164,6 @@ export default function PosterDetail({ work }) {
 
           <BackLink to="/content">작품 목록</BackLink>
 
-          {/* 작품 번호 */}
           <span
             className="font-serif text-text-primary tabular-nums"
             style={{
@@ -94,7 +176,6 @@ export default function PosterDetail({ work }) {
             {work.id}
           </span>
 
-          {/* 작품명 */}
           <h1
             className="font-pretendard text-accent whitespace-pre-line"
             style={{
@@ -109,7 +190,6 @@ export default function PosterDetail({ work }) {
             {formatTitle(work.title)}
           </h1>
 
-          {/* 작가명 + 학과 */}
           <div className="flex flex-col gap-1">
             <span
               className="font-pretendard text-text-primary"
@@ -127,19 +207,16 @@ export default function PosterDetail({ work }) {
             )}
           </div>
 
-          {/* 작품 소개 */}
           {work.description && (
             <DetailSection label="작품 소개">{work.description}</DetailSection>
           )}
 
-          {/* AI 활용 및 학생의 기여 */}
           {work.aiContribution && (
             <DetailSection label="AI 활용 및 학생의 기여">
               {stripAiHeading(work.aiContribution)}
             </DetailSection>
           )}
 
-          {/* 수상 배지 */}
           {work.award && (
             <div>
               <AwardBadge type={work.award} />
@@ -148,7 +225,6 @@ export default function PosterDetail({ work }) {
 
         </div>
       </div>
-
     </div>
   )
 }
