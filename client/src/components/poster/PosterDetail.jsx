@@ -18,9 +18,7 @@ function stripAiHeading(text) {
 }
 
 function formatTitle(title) {
-  const idx = title.indexOf(' (')
-  if (idx === -1) return title
-  return <>{title.slice(0, idx)}<br />{title.slice(idx + 1)}</>
+  return title
 }
 
 function DetailSection({ label, children }) {
@@ -61,18 +59,9 @@ function CarouselDot({ active, onClick }) {
   )
 }
 
-function NavButton({ onClick, disabled, children, overlay, side }) {
+function NavButton({ onClick, disabled, children, side }) {
   const [hovered, setHovered] = useState(false)
   const color = disabled ? '#666' : hovered ? '#C8E63C' : '#f0f0f0'
-  const overlayStyle = overlay ? {
-    position: 'absolute',
-    top: '50%',
-    [side]: '12px',
-    transform: 'translateY(-50%)',
-    background: 'rgba(0,0,0,0.5)',
-    borderRadius: '4px',
-    zIndex: 1,
-  } : {}
   return (
     <button
       onClick={onClick}
@@ -80,15 +69,20 @@ function NavButton({ onClick, disabled, children, overlay, side }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
+        position: 'absolute',
+        top: '50%',
+        [side]: '12px',
+        transform: 'translateY(-50%)',
+        background: 'rgba(0,0,0,0.5)',
+        borderRadius: '4px',
+        zIndex: 2,
         color,
         border: 'none',
         padding: '8px',
         cursor: disabled ? 'default' : 'pointer',
-        flexShrink: 0,
         transition: 'color 0.2s ease',
         display: 'flex',
         alignItems: 'center',
-        ...overlayStyle,
       }}
     >
       {children}
@@ -110,18 +104,18 @@ export default function PosterDetail({ work }) {
         {/* 좌측: 포스터 이미지 (60%) */}
         <div className="md:w-[60%] flex flex-col items-center justify-start px-4 pt-6 pb-0 md:px-6 md:pt-12 md:pb-12 lg:px-10">
           {isCarousel ? (
-            <div className="flex flex-col items-center gap-4 w-full">
-              <div className="relative bg-surface-01 w-full" style={{ lineHeight: 0 }}>
+            <div className="flex flex-col items-center gap-4">
+              {/* 단일 이미지와 동일 규칙: w-auto max-h-[90vh], 이미지 원본 비율 */}
+              <div className="relative bg-surface-01 inline-block" style={{ lineHeight: 0 }}>
                 <PosterImage
                   src={displaySrc}
                   type={displayType}
                   alt={`${work.author} - ${work.title}`}
-                  className="w-auto max-h-[90vh] object-contain"
+                  className="w-auto max-h-[85vh] object-contain"
                 />
                 <NavButton
                   onClick={() => setActiveIndex(i => i - 1)}
                   disabled={activeIndex === 0}
-                  overlay
                   side="left"
                 >
                   <ChevronLeft size={28} />
@@ -129,7 +123,6 @@ export default function PosterDetail({ work }) {
                 <NavButton
                   onClick={() => setActiveIndex(i => i + 1)}
                   disabled={activeIndex === work.images.length - 1}
-                  overlay
                   side="right"
                 >
                   <ChevronRight size={28} />

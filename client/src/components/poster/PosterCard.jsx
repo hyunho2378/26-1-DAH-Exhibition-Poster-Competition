@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import AwardBadge from '../ui/AwardBadge'
 
 function formatTitle(title) {
-  const idx = title.indexOf(' (')
-  if (idx === -1) return title
-  return <>{title.slice(0, idx)}<br />{title.slice(idx + 1)}</>
+  return title
 }
 
 function PosterImg({ src, alt, className }) {
