@@ -1,8 +1,9 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function ViewWorksCTA() {
   const ref = useRef(null)
+  const [hovered, setHovered] = useState(false)
 
   useEffect(() => {
     const prefersReduced =
@@ -19,7 +20,6 @@ export default function ViewWorksCTA() {
       if (!el) return
       const rect = el.getBoundingClientRect()
       const vh = window.innerHeight
-      // 0% when bottom of element reaches viewport bottom, 100% when top reaches viewport 50%
       const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.5)))
       el.style.backgroundPosition = `${(1 - progress) * 100}% 0%`
     }
@@ -31,7 +31,14 @@ export default function ViewWorksCTA() {
 
   return (
     <section className="flex flex-col justify-center min-h-[40vh] md:min-h-[60vh] py-8 md:py-16">
-      <Link to="/content" data-cursor="poster" className="block">
+      <Link
+        to="/content"
+        data-cursor="poster"
+        className="block"
+        style={{ cursor: 'pointer' }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
         <h2
           ref={ref}
           className="font-serif"
@@ -46,9 +53,22 @@ export default function ViewWorksCTA() {
             backgroundImage: 'linear-gradient(to right, #C8E63C 50%, #f0f0f0 50%)',
             backgroundSize: '200% 100%',
             backgroundPosition: '100% 0%',
+            textShadow: hovered
+              ? '0 0 40px rgba(200, 230, 60, 0.8), 0 0 80px rgba(200, 230, 60, 0.4)'
+              : 'none',
+            transition: 'text-shadow 0.3s ease',
           }}
         >
           ENTER EXHIBITION
+          <span
+            style={{
+              display: 'inline-block',
+              transform: hovered ? 'translateX(10px)' : 'translateX(0)',
+              transition: 'transform 0.3s ease',
+            }}
+          >
+            {' →'}
+          </span>
         </h2>
       </Link>
     </section>
