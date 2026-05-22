@@ -1,3 +1,4 @@
 # 원본 고용량 이미지 (WebP 최적화본만 git에 포함)
 client/public/images/works/*.png
 client/public/images/works/*.gif
+dist/
