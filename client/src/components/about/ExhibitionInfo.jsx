@@ -41,7 +41,7 @@ export default function ExhibitionInfo() {
                 className="font-pretendard"
                 style={{ fontSize: 'clamp(15px, 1.25vw, 17px)', lineHeight: 1.7, letterSpacing: '-0.01em', color: '#f0f0f0' }}
               >
-                2026.5.25 ~ 6.05
+                2026.05.25. ~ 2026.06.05.
               </p>
               <p className="font-pretendard" style={{ fontSize: '13px', color: '#999', marginTop: '4px' }}>
                 (2 weeks)

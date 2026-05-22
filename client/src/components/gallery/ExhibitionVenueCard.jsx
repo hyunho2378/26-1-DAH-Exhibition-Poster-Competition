@@ -19,7 +19,7 @@ export default function ExhibitionVenueCard() {
               전시 기간
             </dt>
             <dd style={{ fontSize: 'clamp(15px, 1.25vw, 16px)', color: '#f0f0f0', lineHeight: 1.6, letterSpacing: '-0.01em' }}>
-              2026.5.25. ~ 6.5.
+              2026.05.25. ~ 2026.06.05.
               <span style={{ color: '#999999', marginLeft: '8px', fontSize: '13px' }}>(2주간)</span>
             </dd>
           </div>
