@@ -253,8 +253,8 @@ export const works = [
     description: '작품 의도\n본 작품은 인공지능이라는 첨단 기술의 결과물 속에서도 결코 지워질 수 없는 ‘인간의 온기’에 주목했습니다. 우리가 인공지능을 통해 새로운 예술을 빚어낼 때도 그 과정의 시작과 끝에는 결국 인간의 감각과 의도가 깃들기 마련이며, 이를 차갑고 정교하게 구현된 유리 주전자 표면의 선명한 ‘지문’으로 형상화했습니다.\n현대 사회에서 인공지능은 완벽한 정답만을 내놓는 것처럼 보이지만, 때로는 규정되지 않은 \'이상\'을 출력합니다. 우리는 이를 오류라고 부르지만, 그 이면에는 인간의 상상력과 닮은 유연함이 숨어 있습니다. 찻주전자에서 쏟아지는 물이 디지털 픽셀로 변하는 찰나를 포착함으로써, 무형의 데이터가 인문학적 맥락과 결합하여 새로운 예술적 가치를 창출하는 과정을 시각화했습니다.',
     aiContribution: '배경 및 인공지능 기여도\n본 작업의 핵심 오브제인 유리 주전자와 쏟아지는 액체는 생성형 인공지능과 정교한 디지털 렌더링 기술의 협업을 통해 완성되었습니다.\n-비정형의 시각화: 물리적으로 완벽하게 시뮬레이션된 유리 주전자의 투명도와 굴절률은 인공지능의 정밀한 계산 능력을 보여줍니다. 반면, 주전자 본체에 남겨진 지문은 인공지능이 생성한 가상 세계에 인간의 실존적 흔적을 개입시킨 장치입니다.\n-데이터의 상전이: 주전자 주둥이에서 나오는 물이 단순한 액체에 그치지 않고 점진적으로 디지털 글리치와 픽셀로 분해되는 연출은 인공지능이 현실의 물리 법칙을 데이터적 관점으로 재해석했음을 의미합니다.\n-기여한 바: 본 작업은 인공지능을 활용하여 비주얼 이미지를 생성하고, 전체 포스터의 컨셉 및 정보 구조는 제작자가 직접 설계하였다. ‘Anomaly Detection Exhibition’이라는 전시 주제에 맞추어 디지털 오류와 감시 시스템의 서사를 설정하고, 이를 기반으로 타이포그래피와 레이아웃을 구성하였다.\n특히 이미지 외부의 텍스트 요소(전시명, 날짜, 장소, 코드 기반 시스템 메시지 등)는 모두 직접 작성 및 배치하였으며, 정보의 위계 구조와 시선 흐름을 고려하여 디자인을 완성하였다. AI는 유리 주전자 등 중심의 메인 비주얼 생성에만 활용되었으며, 전체적인 구성과 의미 전달 방식은 제작자의 기획에 의해 결정되었다',
     type: 'png',
-    thumbnail: '/images/works/error-418-ideal.png',
-    full: '/images/works/error-418-ideal.png',
+    thumbnail: '/images/works/error-418-ideal-thumb.webp',
+    full: '/images/works/error-418-ideal-thumb.webp',
     award: null,
   },
   {
@@ -268,11 +268,11 @@ export const works = [
     aiContribution: 'AI 툴 이번 그래픽 작업은 Claude(Anthropic), ChatGPT(OpenAI), Flow(이미지 생성)를 활용하였으며, 학생은 초기 콘셉트 기획과 지문을 모티프로 한 배경 조형 언어 설계, 와이어프레임 오브제 선택, 컬러 팔레트 및 타이포그래피 디렉팅, 포스터 레이아웃 전반을 이끌어냈습니다.',
     type: 'carousel',
     images: [
-      { type: 'png', src: '/images/works/heunyeol.png', label: 'Poster' },
+      { type: 'png', src: '/images/works/heunyeol-thumb.webp', label: 'Poster' },
       { type: 'gif', src: '/images/works/heunyeol-anim.gif', label: 'Animation' },
     ],
-    thumbnail: '/images/works/heunyeol.png',
-    full: '/images/works/heunyeol.png',
+    thumbnail: '/images/works/heunyeol-thumb.webp',
+    full: '/images/works/heunyeol-thumb.webp',
     award: null,
   },
 ]
