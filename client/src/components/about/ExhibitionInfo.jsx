@@ -4,10 +4,6 @@ import Divider from '../ui/Divider'
 function BigLabel({ children }) {
   return (
     <div style={{ flexShrink: 0, width: 'clamp(100px, 16vw, 190px)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
-        <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#C8E63C', display: 'block', flexShrink: 0 }} />
-        <span style={{ width: 14, height: 14, borderRadius: '50%', border: '1px solid #2a2a2a', display: 'block', flexShrink: 0 }} />
-      </div>
       <span
         className="font-serif block"
         style={{
@@ -25,9 +21,9 @@ function BigLabel({ children }) {
 }
 
 const AWARDS = [
-  { grade: 'Grand Prize',    amount: '₩300,000', count: '1 recipient',  note: null },
-  { grade: 'Excellence',     amount: '₩200,000', count: '3 recipients', note: null },
-  { grade: 'Encouragement',  amount: '₩100,000', count: '1 recipient',  note: '* 1st-year students' },
+  { grade: 'Grand Prize', amount: '₩300,000', count: '1 recipient', note: null },
+  { grade: 'Excellence', amount: '₩200,000', count: '3 recipients', note: null },
+  { grade: 'Encouragement', amount: '₩100,000', count: '1 recipient', note: '* 1st-year students' },
 ]
 
 export default function ExhibitionInfo() {
@@ -59,6 +55,7 @@ export default function ExhibitionInfo() {
             <div className="flex-1">
               {AWARDS.map(({ grade, amount, count, note }, i) => (
                 <div key={grade}>
+                  {i > 0 && <div style={{ borderTop: '1px solid #1f1f1f' }} />}
                   <div
                     className="flex flex-wrap items-baseline gap-x-4 gap-y-1"
                     style={{ padding: '14px 0' }}
@@ -84,9 +81,6 @@ export default function ExhibitionInfo() {
                       </span>
                     )}
                   </div>
-                  {i < AWARDS.length - 1 && (
-                    <div style={{ borderTop: '1px solid #1f1f1f' }} />
-                  )}
                 </div>
               ))}
             </div>
@@ -102,12 +96,17 @@ export default function ExhibitionInfo() {
               >
                 Hallym University
               </p>
+              <p
+                className="font-pretendard"
+                style={{ fontSize: 'clamp(15px, 1.25vw, 17px)', lineHeight: 1.7, letterSpacing: '-0.01em', color: '#f0f0f0' }}
+              >
+                Ilsong Library 4F C.Square
+              </p>
             </div>
           </div>
 
         </div>
       </FadeIn>
-      <Divider className="mt-10 md:mt-16" />
     </section>
   )
 }
