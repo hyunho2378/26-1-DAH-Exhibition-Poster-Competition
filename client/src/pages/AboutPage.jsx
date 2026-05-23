@@ -21,7 +21,7 @@ export default function AboutPage() {
       <Statement />
 
       {/* [3] Imperfection — 우측 정렬, 라임, 중간 크기 */}
-      <div className="py-2 md:py-10">
+      <div className="py-24 md:py-10">
         <FadeIn>
           <p
             className="font-serif text-right"
@@ -39,7 +39,7 @@ export default function AboutPage() {
       </div>
 
       {/* [3] L-HUSS × DAH — 좌측 정렬, 화이트, 대형 */}
-      <div className="pb-2 md:pb-10">
+      <div className="pb-24 md:pb-10">
         <FadeIn>
           <span
             className="font-serif block"

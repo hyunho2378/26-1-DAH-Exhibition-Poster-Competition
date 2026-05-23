@@ -2,7 +2,7 @@ import FadeIn from '../ui/FadeIn'
 
 export default function Statement() {
   return (
-    <section className="relative py-3 md:py-20 overflow-hidden">
+    <section className="relative py-24 md:py-20 overflow-hidden">
 
       {/* 1. Human Touch — 상단 대형, 우측 정렬 */}
       <FadeIn>
@@ -25,7 +25,7 @@ export default function Statement() {
       </FadeIn>
 
       {/* 2. 설명 문단 — 좌측 정렬, body-lg 크기 */}
-      <div className="mt-6 md:mt-10">
+      <div className="mt-20 md:mt-10">
         <FadeIn delay={0.1}>
           <p
             className="font-pretendard"

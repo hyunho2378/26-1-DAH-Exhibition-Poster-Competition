@@ -201,7 +201,7 @@ export default function TeapotTypo() {
   return (
     // 180vh — 섹션 진입하면 금방 티팟 보임 (scrollable = 80vh)
     // 머무는 구간(0.2~0.8) = 80vh * 0.6 = 48vh ≈ 스크롤 4~5번
-    <div ref={sectionRef} style={{ height: typeof window !== 'undefined' && window.innerWidth < 768 ? '115vh' : '180vh', position: 'relative' }}>
+    <div ref={sectionRef} style={{ height: typeof window !== 'undefined' && window.innerWidth < 768 ? '250vh' : '180vh', position: 'relative' }}>
       <div
         style={{
           position: 'sticky',
