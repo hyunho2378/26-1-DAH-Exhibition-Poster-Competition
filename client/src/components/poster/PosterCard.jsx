@@ -63,7 +63,7 @@ export default function PosterCard({ work, onClick }) {
           {work.id}
         </span>
         <p
-          className="font-pretendard text-text-primary leading-snug"
+          className="font-pretendard text-text-primary leading-snug whitespace-pre-line"
           style={{ fontSize: '17px', fontWeight: 600, letterSpacing: '-0.01em' }}
         >
           {formatTitle(work.title)}

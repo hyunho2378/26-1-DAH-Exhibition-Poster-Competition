@@ -49,7 +49,7 @@ export const works = [
   },
   {
     id: '04',
-    studentId: '20222538',
+    studentId: '20222583',
     department: '디지털인문예술전공',
     author: '주현호',
     title: 'Against the Flow',
@@ -63,7 +63,7 @@ export const works = [
   },
   {
     id: '05',
-    studentId: '20222538',
+    studentId: '20222583',
     department: '디지털인문예술전공',
     author: '주현호',
     title: 'HUMAN ERROR',
