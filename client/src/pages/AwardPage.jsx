@@ -1,47 +1,84 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import PageHeader from '../components/ui/PageHeader'
 import Divider from '../components/ui/Divider'
+import { getAwardWorks } from '../data/works'
 
-// A2 비율 카드 (1:1.414) — 내부 비워둠 (나중에 이미지 넣을 자리)
-function AwardCard({ label, size = 'normal' }) {
-  const isLarge = size === 'large'
+const GRADE_LABEL = {
+  grand: 'Grand Prize',
+  excellence: 'Excellence',
+  encouragement: 'Encouragement',
+}
+
+function AwardCard({ work, large = false }) {
+  const [hovered, setHovered] = useState(false)
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '12px',
-      }}
+    <Link
+      to={`/content/${work.id}`}
+      style={{ textDecoration: 'none' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <div
         style={{
-          width: '100%',
-          maxWidth: isLarge ? '400px' : '100%',
-          aspectRatio: '1 / 1.414',
-          backgroundColor: '#141414',
-          border: '1px solid #1f1f1f',
-          borderRadius: '4px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '10px',
+          transition: 'transform 0.2s ease',
+          transform: hovered ? 'scale(1.02)' : 'scale(1)',
         }}
-      />
-      {label && (
+      >
+        <div
+          style={{
+            width: '100%',
+            aspectRatio: '1 / 1.414',
+            backgroundColor: '#141414',
+            border: '1px solid #1f1f1f',
+            borderRadius: '4px',
+            overflow: 'hidden',
+          }}
+        >
+          <img
+            src={work.thumbnail}
+            alt={work.title}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+        </div>
         <span
           className="font-suit"
           style={{
             fontSize: '11px',
             letterSpacing: '0.08em',
-            color: '#555555',
+            color: '#C8E63C',
             textTransform: 'uppercase',
             fontWeight: 600,
           }}
         >
-          {label}
+          {GRADE_LABEL[work.award]}
         </span>
-      )}
-    </div>
+        <p
+          className="font-pretendard"
+          style={{
+            fontSize: large ? '17px' : '14px',
+            fontWeight: 600,
+            color: '#f0f0f0',
+            lineHeight: 1.3,
+            letterSpacing: '-0.01em',
+            margin: 0,
+          }}
+        >
+          {work.title}
+        </p>
+        <span
+          className="font-pretendard"
+          style={{ fontSize: '13px', color: '#999', fontWeight: 400 }}
+        >
+          {work.author}
+        </span>
+      </div>
+    </Link>
   )
 }
 
@@ -50,57 +87,44 @@ export default function AwardPage() {
     document.title = "Award — 418 I'M A NOT TEAPOT"
   }, [])
 
+  const { grand, excellence, encouragement } = getAwardWorks()
+  const grandWork = grand[0]
+  const lowerWorks = [excellence[0], excellence[2], excellence[1], ...encouragement]
+
   return (
     <div className="px-4 md:px-6 lg:px-10 2xl:px-12 py-10 md:py-14">
       <PageHeader title="Award" />
 
-      {/* 최우수상 섹션 */}
-      <section style={{ paddingTop: '48px', paddingBottom: '48px' }}>
-        {/* 라벨 */}
-        <p
-          className="font-suit"
-          style={{
-            fontSize: '11px',
-            letterSpacing: '0.08em',
-            color: '#999999',
-            textTransform: 'uppercase',
-            fontWeight: 600,
-            marginBottom: '32px',
-            textAlign: 'center',
-          }}
-        >
-          Grand Prize
-        </p>
-
-        {/* 카드 — 중앙 정렬 */}
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '100%', maxWidth: '400px' }}>
-            <AwardCard size="large" />
+      {/* 최우수상 */}
+      {grandWork && (
+        <section style={{ paddingTop: '48px', paddingBottom: '48px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ width: '100%', maxWidth: '380px' }}>
+              <AwardCard work={grandWork} large />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <Divider />
 
-      {/* 우수상 + 장려상 섹션 */}
-      <section style={{ paddingTop: '48px', paddingBottom: '48px' }}>
-        {/* 4컬럼 그리드 */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '16px',
-          }}
-          className="award-lower-grid"
-        >
-          {/* 우수상 3개 */}
-          <AwardCard label="Excellence" />
-          <AwardCard label="Excellence" />
-          <AwardCard label="Excellence" />
-          {/* 장려상 1개 */}
-          <AwardCard label="Encouragement" />
-        </div>
-      </section>
+      {/* 우수상 + 장려상 */}
+      {lowerWorks.length > 0 && (
+        <section style={{ paddingTop: '48px', paddingBottom: '48px' }}>
+          <div
+            className="award-lower-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '16px',
+            }}
+          >
+            {lowerWorks.map(w => (
+              <AwardCard key={w.id} work={w} />
+            ))}
+          </div>
+        </section>
+      )}
 
       <Divider />
       <div className="py-8">
@@ -114,7 +138,6 @@ export default function AwardPage() {
         </Link>
       </div>
 
-      {/* 모바일 2컬럼 반응형 */}
       <style>{`
         @media (max-width: 767px) {
           .award-lower-grid {

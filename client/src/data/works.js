@@ -59,7 +59,7 @@ export const works = [
     type: 'png',
     thumbnail: '/images/works/against-the-flow-thumb.webp',
     full: '/images/works/against-the-flow-full.webp',
-    award: null,
+    award: 'grand',
   },
   {
     id: '05',
@@ -87,7 +87,7 @@ export const works = [
     type: 'png',
     thumbnail: '/images/works/un-formatted-thumb.webp',
     full: '/images/works/un-formatted-full.webp',
-    award: null,
+    award: 'excellence',
   },
   {
     id: '07',
@@ -199,7 +199,7 @@ export const works = [
     type: 'png',
     thumbnail: '/images/works/kaehwa-isumin-thumb.webp',
     full: '/images/works/kaehwa-isumin-full.webp',
-    award: null,
+    award: 'excellence',
   },
   {
     id: '15',
@@ -255,7 +255,7 @@ export const works = [
     type: 'png',
     thumbnail: '/images/works/error-418-ideal-thumb.webp',
     full: '/images/works/error-418-ideal-thumb.webp',
-    award: null,
+    award: 'excellence',
   },
   {
     id: '19',
@@ -273,7 +273,7 @@ export const works = [
     ],
     thumbnail: '/images/works/heunyeol-thumb.webp',
     full: '/images/works/heunyeol-full.webp',
-    award: null,
+    award: 'encouragement',
   },
 ]
 
