@@ -12,7 +12,7 @@ export default function HeroSection() {
 
       {/* 마퀴 — 콘텐츠 패딩 돌파 */}
       <div className="-mx-4 md:-mx-6 lg:-mx-10 2xl:-mx-12">
-        <Marquee text="418 I'M NOT A TEAPOT · DIGITAL ARTS AND HUMANITIES · 2026 ·" />
+        <Marquee text="418 I'M A TEAPOT · DIGITAL ARTS AND HUMANITIES · 2026 ·" />
       </div>
 
       {/* 타이틀 + 부제 */}
@@ -28,11 +28,11 @@ export default function HeroSection() {
           }}
           onMouseEnter={() => setRunSignal(s => s + 1)}
         >
-          <ScrambleText text="418: I'M " runSignal={runSignal} startDelay={0} />
           <em style={{ fontStyle: 'italic', color: '#C8E63C' }}>
-            <ScrambleText text="NOT" runSignal={runSignal} startDelay={360} />
+            <ScrambleText text="418" runSignal={runSignal} startDelay={0} />
           </em>
-          <ScrambleText text=" A TEAPOT" runSignal={runSignal} startDelay={480} />
+          <ScrambleText text=": I'M A" runSignal={runSignal} startDelay={180} />
+          <ScrambleText text=" TEAPOT" runSignal={runSignal} startDelay={480} />
         </h1>
 
         <p

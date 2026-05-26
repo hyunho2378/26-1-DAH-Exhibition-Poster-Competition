@@ -26,7 +26,7 @@ export default function Header() {
           className="block font-suit text-text-secondary group-hover:text-text-primary transition-colors duration-200 uppercase mt-1"
           style={{ fontSize: 'clamp(10px, 1.2vw, 13px)', letterSpacing: '0.12em', fontWeight: 600 }}
         >
-          I&apos;M NOT A TEAPOT
+          I&apos;M A TEAPOT
         </span>
       </Link>
 

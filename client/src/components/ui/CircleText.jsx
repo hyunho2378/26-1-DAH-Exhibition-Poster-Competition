@@ -1,7 +1,7 @@
 import { useId } from 'react'
 
 export default function CircleText({
-  text = "418 · I'M NOT A TEAPOT · DIGITAL HUMANITIES & ARTS · ",
+  text = "418 · I'M A TEAPOT · DIGITAL HUMANITIES & ARTS · ",
   size = 150,
   duration = 22,
   className = '',

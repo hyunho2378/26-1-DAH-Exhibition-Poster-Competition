@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const BODY_TEXT = "I'M NOT A TEAPOT · HUMAN TOUCH · 418 · WARMTH · the trace that never gets erased · DIGITAL HUMANITIES · ARTS · I'M NOT A TEAPOT · 418 · HUMAN TOUCH · "
+const BODY_TEXT = "I'M A TEAPOT · HUMAN TOUCH · 418 · WARMTH · the trace that never gets erased · DIGITAL HUMANITIES · ARTS · I'M A TEAPOT · 418 · HUMAN TOUCH · "
 const HIGHLIGHT_WORDS = ['HUMAN', 'TOUCH', '418']
 const GLITCH_CHARS = '!<>-_\\/[]{}=+*^?#'
 

@@ -5,7 +5,7 @@ import PosterGrid from '../components/poster/PosterGrid'
 
 export default function ContentPage() {
   useEffect(() => {
-    document.title = "Content — 418 I'M A NOT TEAPOT"
+    document.title = "Content — 418 I'M A TEAPOT"
   }, [])
 
   return (

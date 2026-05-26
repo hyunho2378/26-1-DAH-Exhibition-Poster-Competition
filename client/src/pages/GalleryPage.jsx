@@ -42,7 +42,7 @@ export default function GalleryPage() {
   const timerRef = useRef(null)
 
   useEffect(() => {
-    document.title = "Gallery — 418 I'M A NOT TEAPOT"
+    document.title = "Gallery — 418 I'M A TEAPOT"
   }, [])
 
   function startTimer() {

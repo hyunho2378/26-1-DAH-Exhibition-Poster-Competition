@@ -84,7 +84,7 @@ function AwardCard({ work, large = false }) {
 
 export default function AwardPage() {
   useEffect(() => {
-    document.title = "Award — 418 I'M A NOT TEAPOT"
+    document.title = "Award — 418 I'M A TEAPOT"
   }, [])
 
   const { grand, excellence, encouragement } = getAwardWorks()

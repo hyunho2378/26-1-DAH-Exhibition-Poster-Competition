@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react'
 
 export default function NotFoundPage() {
   useEffect(() => {
-    document.title = "418 — 418 I'M A NOT TEAPOT"
+    document.title = "418 — 418 I'M A TEAPOT"
   }, [])
 
   return (

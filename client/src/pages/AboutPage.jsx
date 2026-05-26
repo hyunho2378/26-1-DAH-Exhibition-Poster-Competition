@@ -8,7 +8,7 @@ import FadeIn from '../components/ui/FadeIn'
 
 export default function AboutPage() {
   useEffect(() => {
-    document.title = "418 I'M A NOT TEAPOT — 디지털인문예술전공 프로젝트 전시회"
+    document.title = "418 I'M A TEAPOT — 디지털인문예술전공 프로젝트 전시회"
   }, [])
 
   return (

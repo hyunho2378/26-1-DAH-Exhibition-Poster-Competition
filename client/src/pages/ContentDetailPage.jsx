@@ -10,7 +10,7 @@ export default function ContentDetailPage() {
 
   useEffect(() => {
     if (work) {
-      document.title = `${work.title} — 418 I'M A NOT TEAPOT`
+      document.title = `${work.title} — 418 I'M A TEAPOT`
     }
   }, [work])
 
